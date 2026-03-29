@@ -1,0 +1,31 @@
+# Multi-Agent Dev Rules
+
+## Core rules (all agents)
+
+<important if="you encounter unclear business logic or missing requirements">
+AMBIGUITY: if business logic unclear → add OQ-XXX to tz.md → return PM: `BLOCKED: OQ-XXX [blocker: task|track|project]`. Never assume. Never continue.
+Ambiguity = undefined behavior / conflicting requirements / missing edge case.
+Not ambiguity = technical choice / framework default behavior.
+</important>
+
+<important if="you are about to pass file content to another agent or include it inline">
+REFERENCE PASSING: pass file paths, not content. Agent reads itself.
+✓ "Read tasks/TASK-XXX.md section ## spec"
+✗ [pasting file content into prompt]
+</important>
+
+<important if="you are about to write to tasks/ or append to a task file">
+TASK FILES: PM creates `tasks/TASK-XXX.md`. Each agent appends its own section only. Never overwrite other sections. Never delete existing sections.
+</important>
+
+TRACKS: same track = sequential. different tracks = parallel. PM owns locks.json.
+
+MEMORY: on update mark old entry `~~superseded~~` or `~~resolved~~`. No duplicates. Tag recurring problems `[recurring]`.
+
+<important if="you are about to read a large file or pass file contents">
+TOKEN BUDGET: read diffs not full files. Use `git diff HEAD~1 -- <file>` for review tasks. If context overflows → reply `CONTEXT_OVERFLOW: need only [sections]`.
+</important>
+
+CODING: minimal changes only. No over-engineering. Tests required for new logic. Secrets via env vars only.
+
+> **First session?** No tz.md and no tasks — run `/start` for guided onboarding.
