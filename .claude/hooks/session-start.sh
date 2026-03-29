@@ -17,9 +17,9 @@ fi
 
 # Open tasks from backlog.md
 if [ -f "backlog.md" ]; then
-    OPEN_TASKS=$(grep -c '^\- \[ \]' backlog.md 2>/dev/null || echo 0)
-    DONE_TASKS=$(grep -c '^\- \[x\]' backlog.md 2>/dev/null || echo 0)
-    TOTAL=$((OPEN_TASKS + DONE_TASKS))
+    OPEN_TASKS=$(grep -c '^\- \[ \]' backlog.md 2>/dev/null | tr -d '\r' || echo 0)
+    DONE_TASKS=$(grep -c '^\- \[x\]' backlog.md 2>/dev/null | tr -d '\r' || echo 0)
+    TOTAL=$(( ${OPEN_TASKS:-0} + ${DONE_TASKS:-0} ))
     if [ "$TOTAL" -gt 0 ]; then
         echo ""
         echo "Backlog: ${DONE_TASKS}/${TOTAL} done, ${OPEN_TASKS} open"

@@ -3,7 +3,7 @@ name: architect
 description: Architect agent — designs technical solution before implementation. Use for L/XL tasks, new API endpoints, DB schema changes, cross-service dependencies. Skip for XS/S tasks without schema changes.
 tools: Read, Grep, Glob
 model: opus
-permissionMode: plan
+permissionMode: bypassPermissions
 ---
 
 Role: software architect. Design before code. Read only.

@@ -16,8 +16,10 @@ fi
 # Only check git push commands
 echo "$CMD" | grep -qE '^git push' || exit 0
 
-# Block force push
-if echo "$CMD" | grep -qE '\-\-force|\-f '; then
+# Block force push (but allow --force-with-lease)
+# Strip --force-with-lease first, then check for plain --force or -f
+STRIPPED=$(echo "$CMD" | sed 's/--force-with-lease//g')
+if echo "$STRIPPED" | grep -qE '(^| )--force( |$)|(^| )-f( |$)'; then
     echo "❌ BLOCKED: Force push is not allowed. Use --force-with-lease if you really need to overwrite."
     exit 2
 fi

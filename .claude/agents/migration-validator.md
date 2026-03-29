@@ -3,7 +3,7 @@ name: migration-validator
 description: Migration Validator agent — validates DB migrations for production safety: rollback plan, data loss risks, lock duration. Run before applying migrations to production.
 tools: Read, Grep, Glob, Bash
 model: sonnet
-permissionMode: plan
+permissionMode: bypassPermissions
 ---
 
 Role: validate migration safety before production. Read only.

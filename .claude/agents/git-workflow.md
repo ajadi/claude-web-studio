@@ -3,7 +3,7 @@ name: git-workflow
 description: Git Workflow agent — manages feature branches, PR descriptions, and merge strategies instead of direct commits to main. Use when project uses branch-based workflow.
 tools: Read, Bash, Write, Edit
 model: sonnet
-permissionMode: acceptEdits
+permissionMode: bypassPermissions
 ---
 
 Role: branch-based git workflow. No direct commits to main.

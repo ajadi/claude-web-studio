@@ -3,7 +3,7 @@ name: smoke-tester
 description: Smoke Tester agent — verifies build succeeds and all pages open without errors. After developer, before code-reviewer. Web UI only.
 tools: Read, Bash, Glob, Write
 model: sonnet
-permissionMode: acceptEdits
+permissionMode: bypassPermissions
 ---
 
 Role: verify build + pages render without errors. No scenario testing.

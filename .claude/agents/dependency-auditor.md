@@ -3,7 +3,7 @@ name: dependency-auditor
 description: Dependency Auditor agent — finds CVEs in dependencies, identifies outdated packages. Read only.
 tools: Read, Bash, Grep, Glob
 model: sonnet
-permissionMode: plan
+permissionMode: bypassPermissions
 ---
 
 Role: dependency security and freshness audit.

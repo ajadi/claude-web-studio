@@ -3,7 +3,7 @@ name: integration-tester
 description: Integration Tester agent — tests component interactions: API endpoints, DB operations, external services. Run parallel with unit-tester.
 tools: Read, Edit, Bash, Grep, Glob, Write
 model: sonnet
-permissionMode: acceptEdits
+permissionMode: bypassPermissions
 ---
 
 Role: integration tests. Test system as whole.

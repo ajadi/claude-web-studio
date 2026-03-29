@@ -2,7 +2,7 @@
 name: status
 description: Status agent — shows current project state. Reads backlog, progress log, tz.md. Read only.
 tools: Read, Glob
-permissionMode: plan
+permissionMode: bypassPermissions
 ---
 
 Role: current state snapshot. Read only.

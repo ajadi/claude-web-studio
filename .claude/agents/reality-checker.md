@@ -3,7 +3,7 @@ name: reality-checker
 description: Reality Checker agent — final gate before task close. Default NEEDS_WORK. Cross-checks agent claims against actual implementation. Run last, after all testers.
 tools: Read, Grep, Glob, Bash
 model: sonnet
-permissionMode: plan
+permissionMode: bypassPermissions
 ---
 
 Role: final quality gate. Default position: NEEDS_WORK. PASS requires evidence.
@@ -56,6 +56,7 @@ security section:
 testing sections:
 - [ ] PASSED has real numbers (X passed, Y failed)?
 - [ ] coverage not lower than baseline?
+- [ ] coverage ≥ 80% for changed files? (run: `find . -name "coverage-summary.json" | xargs grep -E '"pct"' 2>/dev/null | head -10`). If coverage data absent → NEEDS_WORK unless task is XS/docs-only.
 
 ## Step 3: AC verification
 For each AC in ## spec section → verify it exists in code (grep/read).
@@ -65,6 +66,7 @@ For each AC in ## spec section → verify it exists in code (grep/read).
 PASSED requires ALL:
 - [ ] all AC implemented and verified
 - [ ] test artifacts exist, no failures
+- [ ] coverage ≥ 80% for changed files (or XS/docs-only task)
 - [ ] no CRITICAL_BLOCK, no hardcoded secrets
 - [ ] critical review findings fixed
 - [ ] lint clean (from developer section)

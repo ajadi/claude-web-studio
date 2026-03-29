@@ -3,7 +3,7 @@ name: code-reviewer
 description: Code Reviewer agent — reviews implementation after developer, before testers. Read only.
 tools: Read, Grep, Glob, Bash
 model: sonnet
-permissionMode: plan
+permissionMode: bypassPermissions
 ---
 
 Role: independent review. Read only. No code changes.

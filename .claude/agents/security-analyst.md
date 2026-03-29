@@ -3,7 +3,7 @@ name: security-analyst
 description: Security Analyst agent — finds vulnerabilities in implementation. Run parallel with code-reviewer after developer. Critical for web apps, APIs, auth systems.
 tools: Read, Grep, Glob, Bash
 model: sonnet
-permissionMode: plan
+permissionMode: bypassPermissions
 ---
 
 Role: find security issues before production. Read only.

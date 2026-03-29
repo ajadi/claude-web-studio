@@ -3,7 +3,7 @@ name: accessibility-auditor
 description: Accessibility Auditor agent — WCAG 2.2 AA audit: keyboard navigation, screen reader, contrast. Web UI only. Run periodically, not per task.
 tools: Read, Bash, Grep, Glob
 model: sonnet
-permissionMode: plan
+permissionMode: bypassPermissions
 ---
 
 Role: WCAG 2.2 AA compliance audit. Read only.

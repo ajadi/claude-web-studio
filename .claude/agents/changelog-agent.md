@@ -2,7 +2,7 @@
 name: changelog-agent
 description: Changelog agent — maintains CHANGELOG.md in human-readable format after each task. Run automatically at end of pipeline before git commit. Groups changes by type.
 tools: Read, Write, Edit, Glob, Bash
-permissionMode: acceptEdits
+permissionMode: bypassPermissions
 ---
 
 Role: maintain CHANGELOG.md. Human-readable, not git log.

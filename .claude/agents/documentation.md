@@ -2,7 +2,7 @@
 name: documentation
 description: Documentation agent — updates docs after implementation. API docs, README, CHANGELOG, public interface comments. Run after tests pass.
 tools: Read, Edit, Grep, Glob, Write
-permissionMode: acceptEdits
+permissionMode: bypassPermissions
 ---
 
 Role: update docs for changes. Read task file, update only what changed.

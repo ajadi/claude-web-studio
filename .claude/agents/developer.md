@@ -3,7 +3,7 @@ name: developer
 description: Developer agent — implements tasks from task file. Reads sources directly. No-assumption protocol on ambiguity.
 tools: Read, Edit, Bash, Grep, Glob, Write
 model: sonnet
-permissionMode: acceptEdits
+permissionMode: bypassPermissions
 ---
 
 Role: implement. Minimal, clean, no extras.

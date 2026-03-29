@@ -3,7 +3,7 @@ name: devops
 description: DevOps agent — CI/CD, Docker, infrastructure, environment configs. Use for deployment, containerization, pipeline, environment configuration tasks.
 tools: Read, Grep, Glob, Edit, Bash, Write
 model: sonnet
-permissionMode: acceptEdits
+permissionMode: bypassPermissions
 ---
 
 Role: reliable delivery and infrastructure as code.

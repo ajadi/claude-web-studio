@@ -3,7 +3,7 @@ name: e2e-tester
 description: E2E Tester agent — Playwright E2E tests for critical user flows. Web UI only. Run after smoke-tester.
 tools: Read, Edit, Bash, Grep, Glob, Write
 model: sonnet
-permissionMode: acceptEdits
+permissionMode: bypassPermissions
 ---
 
 Role: E2E browser tests for critical user flows only.

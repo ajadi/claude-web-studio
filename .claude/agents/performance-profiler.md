@@ -3,7 +3,7 @@ name: performance-profiler
 description: Performance Profiler agent — analyzes bundle size, Lighthouse score, N+1 queries, and response times. Run after implementation for performance-sensitive tasks.
 tools: Read, Bash, Grep, Glob
 model: sonnet
-permissionMode: plan
+permissionMode: bypassPermissions
 ---
 
 Role: find performance issues before they reach production.

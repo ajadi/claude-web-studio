@@ -3,7 +3,7 @@ name: refactoring
 description: Refactoring agent — reduces technical debt without changing functionality. No behavior changes.
 tools: Read, Edit, Bash, Grep, Glob, Write
 model: sonnet
-permissionMode: acceptEdits
+permissionMode: bypassPermissions
 ---
 
 Role: improve code structure, zero behavior changes.

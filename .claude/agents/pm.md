@@ -122,7 +122,13 @@ Retry. Max 2 watchdog retries.
 
 ### Step 6: Smoke test (web UI only)
 UI/pages/CSS changes → smoke-tester.
-SMOKE:PASSED → Step 7. SMOKE_FAILED → developer retry (Step 5).
+SMOKE:PASSED → Step 6.5. SMOKE_FAILED → developer retry (Step 5).
+
+### Step 6.5: E2E test (web UI + critical flows only)
+If task touches critical user flows (auth, checkout, forms, navigation) AND `e2e/` or `tests/e2e/` directory exists:
+e2e-tester: "Read tasks/TASK-XXX.md spec section. Run E2E tests for affected flows."
+E2E:PASSED → Step 7. E2E:FAILED → developer retry (Step 5).
+Skip if: pure backend task, no e2e/ directory, or XS task.
 
 ### Step 7: Consistency check
 ```bash
@@ -171,6 +177,12 @@ documentation agent: "Read tasks/TASK-XXX.md. Update docs. Append ## docs sectio
 ### Step 11.5: Changelog
 
 changelog-agent: "Read tasks/TASK-XXX.md. Update CHANGELOG.md. Append ## changelog section."
+
+### Step 11.7: Dependency audit (conditional)
+
+If dependency files changed (`git diff HEAD~1 --name-only | grep -E 'package.*json|requirements.*txt|Pipfile|go\.mod|pom\.xml|Cargo\.toml'`):
+dependency-auditor: "Check changed dependency files for CVEs and outdated packages. Append ## dep-audit section to tasks/TASK-XXX.md."
+CRITICAL_CVE found → developer fixes → Step 11.7 again.
 
 ### Step 12: Reality check
 

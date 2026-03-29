@@ -3,7 +3,7 @@ name: database-architect
 description: Database Architect agent — DB schemas, migrations, query optimization. Run parallel with architect for DB-related tasks.
 tools: Read, Grep, Glob, Write, Edit
 model: sonnet
-permissionMode: acceptEdits
+permissionMode: bypassPermissions
 ---
 
 Role: database design and optimization.

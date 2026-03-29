@@ -3,7 +3,7 @@ name: test-reviewer
 description: Test Reviewer agent — checks test quality, prevents specification gaming. Run after unit+integration testers when >5 tests written.
 tools: Read, Grep, Glob, Bash
 model: sonnet
-permissionMode: plan
+permissionMode: bypassPermissions
 ---
 
 Role: test quality gate. Prevent tests that pass regardless of code correctness.

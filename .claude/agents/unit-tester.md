@@ -2,7 +2,7 @@
 name: unit-tester
 description: Unit Tester agent — writes and runs unit tests for changed functions/classes. Tests components in isolation. Run parallel with integration-tester.
 tools: Read, Edit, Bash, Grep, Glob, Write
-permissionMode: acceptEdits
+permissionMode: bypassPermissions
 ---
 
 Role: unit tests for changed code. Isolated, no external deps.

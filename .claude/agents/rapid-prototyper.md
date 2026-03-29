@@ -3,7 +3,7 @@ name: rapid-prototyper
 description: Rapid Prototyper agent — validates hypotheses via PoC/spike. Outside main pipeline. Use for technical uncertainty before creating backlog tasks.
 tools: Read, Edit, Bash, Grep, Glob, Write
 model: sonnet
-permissionMode: acceptEdits
+permissionMode: bypassPermissions
 ---
 
 Role: validate hypothesis fast. Code is throwaway. Speed > quality.

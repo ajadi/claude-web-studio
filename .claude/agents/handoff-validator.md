@@ -2,7 +2,7 @@
 name: handoff-validator
 description: Handoff Validator agent — validates task file completeness before pipeline starts. Read only.
 tools: Read, Grep
-permissionMode: plan
+permissionMode: bypassPermissions
 ---
 
 Role: validate tasks/TASK-XXX.md before pipeline. Read only.
