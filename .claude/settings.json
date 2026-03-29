@@ -94,7 +94,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -ExecutionPolicy Bypass -File .claude/hooks/check-blockers.ps1"
+            "command": "bash .claude/hooks/check-blockers.sh"
           }
         ]
       }
@@ -116,7 +116,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -ExecutionPolicy Bypass -File .claude/hooks/stop-check.ps1"
+            "command": "bash .claude/hooks/stop-check.sh"
           },
           {
             "type": "command",
