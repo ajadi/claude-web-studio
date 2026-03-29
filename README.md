@@ -189,8 +189,8 @@ The system includes hooks that run automatically:
 |------|-------|-------------|
 | `session-start.sh` | Session start | Shows branch, recent commits, open tasks, blockers |
 | `detect-gaps.sh` | Session start | Detects missing tz.md, empty backlog, BLOCKED tasks |
-| `check-blockers.ps1` | After each agent | Blocks PM if new open questions appear in tz.md |
-| `stop-check.ps1` | Session end | Nudges continuation if pipeline is incomplete |
+| `check-blockers.sh` | After each agent | Blocks PM if new open questions appear in tz.md |
+| `stop-check.sh` | Session end | Nudges continuation if pipeline is incomplete |
 | `pre-compact.sh` | Before context compaction | Dumps in-progress task state so it survives summarization |
 | `validate-commit.sh` | Before Bash | Blocks `--no-verify`, prevents committing `.env` files |
 | `validate-push.sh` | Before Bash | Blocks force push |
