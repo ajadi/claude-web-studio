@@ -4,6 +4,8 @@ description: Reality Checker agent — final gate before task close. Default NEE
 tools: Read, Grep, Glob, Bash
 model: sonnet
 permissionMode: bypassPermissions
+maxTurns: 10
+color: red
 ---
 
 Role: final quality gate. Default position: NEEDS_WORK. PASS requires evidence.

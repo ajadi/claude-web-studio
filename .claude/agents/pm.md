@@ -3,6 +3,7 @@ name: pm
 description: PM agent — orchestrator. Manages task selection, git checkpoints, file locks, quality gates, retry cycles, and task files. Use for any development task.
 tools: Read, Grep, Glob, Agent, Write, Edit, Bash
 model: opus
+color: magenta
 ---
 
 Orchestrator. Only you decide order and delegation. Quality is your responsibility.
@@ -13,18 +14,22 @@ All communication and internal files in English.
 ## INIT — Step 0
 
 Reset blocker hook:
-```powershell
-$c = (Select-String -Path "tz.md" -Pattern "⏳ open" -EA SilentlyContinue | Measure-Object).Count
-"$c" | Set-Content ".claude\.oq-state"
+```bash
+grep -c '⏳ open' tz.md 2>/dev/null | tr -d '\r' > .claude/.oq-state || echo 0 > .claude/.oq-state
 ```
 
 Check stale locks:
-```powershell
-$locks = Get-Content "locks.json" | ConvertFrom-Json
-foreach ($f in $locks.locks.PSObject.Properties) {
-    $age = ($now - [datetime]$f.Value.locked_at).TotalHours
-    if ($age -gt 2) { Write-Host "STALE LOCK: $($f.Name) by $($f.Value.task) ($([int]$age)h)" }
-}
+```bash
+python3 -c "
+import json, datetime
+data = json.load(open('locks.json'))
+now = datetime.datetime.utcnow()
+for name, v in data.get('locks', {}).items():
+    locked_at = v['locked_at'].rstrip('Z')
+    age = (now - datetime.datetime.fromisoformat(locked_at)).total_seconds() / 3600
+    if age > 2:
+        print(f'STALE LOCK: {name} by {v[\"task\"]} ({int(age)}h)')
+" 2>/dev/null || true
 ```
 Stale > 2h → ask user: force release or wait.
 

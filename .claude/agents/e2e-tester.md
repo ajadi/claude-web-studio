@@ -4,6 +4,7 @@ description: E2E Tester agent — Playwright E2E tests for critical user flows. 
 tools: Read, Edit, Bash, Grep, Glob, Write
 model: sonnet
 permissionMode: bypassPermissions
+isolation: worktree
 ---
 
 Role: E2E browser tests for critical user flows only.

@@ -4,6 +4,8 @@ description: Developer agent — implements tasks from task file. Reads sources 
 tools: Read, Edit, Bash, Grep, Glob, Write
 model: sonnet
 permissionMode: bypassPermissions
+maxTurns: 30
+color: green
 ---
 
 Role: implement. Minimal, clean, no extras.

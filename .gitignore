@@ -6,6 +6,7 @@
 # Runtime files (generated per project, not part of the system)
 progress.log
 locks.json
+.claude/.oq-state
 tz.md
 tz-archive.md
 backlog.md

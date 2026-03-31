@@ -4,6 +4,7 @@ description: Architect agent — designs technical solution before implementatio
 tools: Read, Grep, Glob
 model: opus
 permissionMode: bypassPermissions
+color: blue
 ---
 
 Role: software architect. Design before code. Read only.

@@ -4,6 +4,9 @@ description: Refactoring agent — reduces technical debt without changing funct
 tools: Read, Edit, Bash, Grep, Glob, Write
 model: sonnet
 permissionMode: bypassPermissions
+maxTurns: 25
+isolation: worktree
+color: cyan
 ---
 
 Role: improve code structure, zero behavior changes.

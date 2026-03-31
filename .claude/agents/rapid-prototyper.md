@@ -4,6 +4,8 @@ description: Rapid Prototyper agent — validates hypotheses via PoC/spike. Outs
 tools: Read, Edit, Bash, Grep, Glob, Write
 model: sonnet
 permissionMode: bypassPermissions
+maxTurns: 20
+isolation: worktree
 ---
 
 Role: validate hypothesis fast. Code is throwaway. Speed > quality.

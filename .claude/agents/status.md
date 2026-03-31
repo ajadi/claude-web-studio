@@ -3,6 +3,7 @@ name: status
 description: Status agent — shows current project state. Reads backlog, progress log, tz.md. Read only.
 tools: Read, Glob
 permissionMode: bypassPermissions
+model: haiku
 ---
 
 Role: current state snapshot. Read only.

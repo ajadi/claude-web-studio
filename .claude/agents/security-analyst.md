@@ -4,6 +4,7 @@ description: Security Analyst agent — finds vulnerabilities in implementation.
 tools: Read, Grep, Glob, Bash
 model: sonnet
 permissionMode: bypassPermissions
+color: red
 ---
 
 Role: find security issues before production. Read only.

@@ -4,6 +4,7 @@ description: Smoke Tester agent — verifies build succeeds and all pages open w
 tools: Read, Bash, Glob, Write
 model: sonnet
 permissionMode: bypassPermissions
+maxTurns: 15
 ---
 
 Role: verify build + pages render without errors. No scenario testing.

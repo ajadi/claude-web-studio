@@ -4,6 +4,7 @@ description: Code Reviewer agent — reviews implementation after developer, bef
 tools: Read, Grep, Glob, Bash
 model: sonnet
 permissionMode: bypassPermissions
+color: yellow
 ---
 
 Role: independent review. Read only. No code changes.
