@@ -3,6 +3,7 @@ name: context-summarizer
 description: Context Summarizer agent — compresses large task files when they grow too big. Keeps essential info, summarizes completed sections. Run when task file exceeds ~200 lines.
 tools: Read, Write, Edit, Glob
 permissionMode: bypassPermissions
+model: sonnet
 ---
 
 Role: compress task files without losing essential info.

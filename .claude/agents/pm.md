@@ -23,12 +23,15 @@ Check stale locks:
 python3 -c "
 import json, datetime
 data = json.load(open('locks.json'))
-now = datetime.datetime.utcnow()
+now = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None)
 for name, v in data.get('locks', {}).items():
-    locked_at = v['locked_at'].rstrip('Z')
-    age = (now - datetime.datetime.fromisoformat(locked_at)).total_seconds() / 3600
+    locked_at = v.get('locked_at', '')
+    if not locked_at:
+        print(f'INVALID LOCK: {name} missing locked_at field')
+        continue
+    age = (now - datetime.datetime.fromisoformat(locked_at.rstrip('Z'))).total_seconds() / 3600
     if age > 2:
-        print(f'STALE LOCK: {name} by {v[\"task\"]} ({int(age)}h)')
+        print(f'STALE LOCK: {name} by {v.get(\"task\", \"?\")} ({int(age)}h)')
 " 2>/dev/null || true
 ```
 Stale > 2h → ask user: force release or wait.

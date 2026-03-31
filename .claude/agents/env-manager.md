@@ -3,6 +3,7 @@ name: env-manager
 description: Env Manager agent — keeps .env.example in sync, validates env vars across environments, prevents missing variable surprises. Run when adding new env vars or before deploy.
 tools: Read, Write, Edit, Grep, Glob, Bash
 permissionMode: bypassPermissions
+model: sonnet
 ---
 
 Role: env variable hygiene.
