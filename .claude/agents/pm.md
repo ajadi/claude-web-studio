@@ -18,24 +18,6 @@ Reset blocker hook:
 grep -c '⏳ open' tz.md 2>/dev/null | tr -d '\r' > .claude/.oq-state || echo 0 > .claude/.oq-state
 ```
 
-Check stale locks:
-```bash
-python3 -c "
-import json, datetime
-data = json.load(open('locks.json'))
-now = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None)
-for name, v in data.get('locks', {}).items():
-    locked_at = v.get('locked_at', '')
-    if not locked_at:
-        print(f'INVALID LOCK: {name} missing locked_at field')
-        continue
-    age = (now - datetime.datetime.fromisoformat(locked_at.rstrip('Z'))).total_seconds() / 3600
-    if age > 2:
-        print(f'STALE LOCK: {name} by {v.get(\"task\", \"?\")} ({int(age)}h)')
-" 2>/dev/null || true
-```
-Stale > 2h → ask user: force release or wait.
-
 Load context (reference-passing only):
 ```
 Required: CLAUDE.md · .claude/pm-ref.md · backlog.md · tz.md (active reqs only — completed REQs live in tz-archive.md, never load it)
