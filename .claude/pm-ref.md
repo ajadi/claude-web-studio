@@ -124,8 +124,7 @@ description:
 
 | file | purpose | writer |
 |------|---------|--------|
-| tz.md | active reqs, open OQ, constraints | BA + agents |
-| tz-archive.md | completed REQs (archived after task close) | PM only |
+| tz.md | reqs, AC, OQ | BA + agents |
 | backlog.md | index of tasks (links only) | PM, decomposer |
 | tasks/TASK-NNN.md | full task + handoff | PM + all agents |
 | tasks/archive/ | completed tasks | PM |
@@ -134,5 +133,38 @@ description:
 | memory/decisions.md | architectural decisions | PM, architect |
 | memory/known-issues.md | issues, workarounds + [recurring] | PM, any agent |
 | .claude/decisions/adr-*.md | detailed ADRs | architect |
-| locks.json | locked files with timestamp | PM |
-| progress.log | action log + watchdog events | PM |
+| .claude/locks.json | locked files with timestamp | PM |
+| .claude/progress.log | action log + watchdog events | PM |
+
+## New agents in v0.7
+
+| agent | model | when to run |
+|-------|-------|-------------|
+| ux-interviewer | sonnet | once per project, before ui-designer |
+| ui-designer | sonnet | once per project, after ux-interviewer |
+| changelog-agent | haiku | end of every task pipeline (before git commit) |
+| estimator | sonnet | after decomposer, once per project/phase |
+| onboarding | sonnet | once when adopting system on existing project |
+| git-workflow | sonnet | replaces PM git steps when using branch workflow |
+| env-manager | haiku | when adding env vars or before deploy |
+| performance-profiler | sonnet | after implementation for perf-sensitive tasks |
+| migration-validator | sonnet | before applying DB migrations to production |
+| context-summarizer | haiku | when task file > 200 lines or CONTEXT_OVERFLOW |
+
+## Design workflow
+```
+ux-interviewer → design-brief.md
+ui-designer    → design-spec.md
+[all frontend tasks] developer reads design-spec.md automatically
+```
+
+## Feature addition workflow
+User: "I want to add X" → PM triggers BA in amend mode → tz.md updated → decomposer for new tasks only
+
+## changelog-agent position in pipeline
+```
+... → Documentation → changelog-agent → RealityChecker → git commit
+```
+
+## Auto-deploy
+After all gates pass (smoke, lint, review, testing, reality-checker) → deploy automatically to production without asking user. Deploy credentials from memory/project_server_credentials.md. Verify healthy + HTTP 200 after deploy.

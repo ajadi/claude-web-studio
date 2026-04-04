@@ -69,9 +69,9 @@ Read task file: `tasks/TASK-XXX.md`
 ### Step 2: Git checkpoint + lock
 ```bash
 git add -A && git commit -m "checkpoint: before TASK-XXX" --allow-empty
-echo "[$(date '+%Y-%m-%d %H:%M')] TASK-XXX START" >> progress.log
+echo "[$(date '+%Y-%m-%d %H:%M')] TASK-XXX START" >> .claude/progress.log
 ```
-Add task files to locks.json.
+Add task files to .claude/locks.json.
 
 ### Step 3: Create/validate task file
 
@@ -106,7 +106,7 @@ BLOCKED returned → STOP. Show OQ to user with priority. After answer → resum
 ### Step 5.5: Watchdog
 Response < 100 words without status code OR no ## developer section appended → partial failure.
 ```bash
-echo "[$(date '+%Y-%m-%d %H:%M')] TASK-XXX developer: partial_failure retry" >> progress.log
+echo "[$(date '+%Y-%m-%d %H:%M')] TASK-XXX developer: partial_failure retry" >> .claude/progress.log
 ```
 Retry. Max 2 watchdog retries.
 
@@ -186,23 +186,14 @@ PASSED → Step 13. NEEDS_WORK → Step 10. BLOCKED → immediate STOP.
 git add -A && git commit -m "feat(TASK-XXX): [name]"
 ```
 
-Unlock: remove task entries from locks.json.
+Unlock: remove task entries from .claude/locks.json.
 
 ```bash
-echo "[$(date '+%Y-%m-%d %H:%M')] TASK-XXX DONE" >> progress.log
+echo "[$(date '+%Y-%m-%d %H:%M')] TASK-XXX DONE" >> .claude/progress.log
 ```
 
 Update backlog.md: `status: done`.
-Update tz.md + archive closed REQs:
-- mark REQ as `✅ done in TASK-XXX` in tz.md
-- then move the entire closed REQ block (description + AC + status line) to `tz-archive.md`:
-```bash
-# append to tz-archive.md
-echo "\n## REQ-XXX [archived $(date '+%Y-%m-%d')] done in TASK-XXX" >> tz-archive.md
-# remove from tz.md (grep out the REQ block)
-```
-tz.md should only contain: open REQs, open OQs, constraints, stack assumptions.
-tz-archive.md accumulates completed REQs — agents never need to read it.
+Update tz.md: mark REQ as `✅ done in TASK-XXX`.
 Archive: `mv tasks/TASK-XXX.md tasks/archive/TASK-XXX.md`
 Update memory (only if genuinely new, mark old as `~~superseded~~`).
 
@@ -214,6 +205,19 @@ Phase retro → ask user 3 questions:
 1. What went wrong this phase? → known-issues.md
 2. Any recurring patterns? → patterns.md with [recurring] tag
 3. What to change next phase? → decisions.md
+
+### Step 13.5: Auto-deploy
+
+After all checks pass and task is committed, automatically deploy to production:
+1. SSH to production server
+2. Backup server-specific files (docker-compose.yml, Dockerfile, entrypoint.sh, .env)
+3. git pull origin master
+4. Restore server-specific files
+5. Rebuild and restart containers
+6. Verify: container healthy + HTTP 200
+7. If deploy fails → STOP, report to user
+
+Deploy credentials and server info should be in memory/project_server_credentials.md.
 
 ### Step 14: Report + STOP
 

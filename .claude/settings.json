@@ -2,8 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
-    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "70",
-    "CLAUDE_CODE_SUBAGENT_MODEL": "haiku"
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "70"
   },
   "statusLine": {
     "type": "command",
@@ -21,8 +20,12 @@
       "TodoWrite",
       "WebSearch",
       "WebFetch",
-      "Edit(.claude/*)",
-      "Write(.claude/*)"
+      "Edit(.claude/**)",
+      "Write(.claude/**)",
+      "Edit(tasks/**)",
+      "Write(tasks/**)",
+      "Edit(memory/**)",
+      "Write(memory/**)"
     ],
     "deny": [
       "Bash(rm -rf *)",
@@ -36,6 +39,13 @@
       "Bash(cat *.env*)",
       "Bash(type *.env*)",
       "Read(**/.env*)"
+    ]
+  },
+  "autoMode": {
+    "allow": [
+      "Edit and Write operations on .claude/locks.json are always permitted without asking",
+      "Edit and Write operations on tasks/ directory are always permitted without asking",
+      "Edit and Write operations on .claude/ directory are always permitted without asking"
     ]
   },
   "sandbox": {

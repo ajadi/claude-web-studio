@@ -28,4 +28,10 @@ TOKEN BUDGET: read diffs not full files. Use `git diff HEAD~1 -- <file>` for rev
 
 CODING: minimal changes only. No over-engineering. Tests required for new logic. Secrets via env vars only.
 
+AGENTS: always spawn subagents with `mode: "bypassPermissions"`. No permission prompts to user from subagents.
+
+BACKGROUND: always run agents with `run_in_background: true`. Stay available to the user while agents work. Report results when agents complete. For independent tasks, launch multiple agents in parallel (multiple Agent calls in one message).
+
+PARALLEL COORDINATION: orchestrator (not PM) owns conflict resolution. Before launching parallel PM agents: check file overlap between tasks. No overlap → parallel. Overlap → sequential. Orchestrator writes locks.json BEFORE launching agents to prevent race conditions.
+
 > **First session?** No tz.md and no tasks — run `/start` for guided onboarding.
