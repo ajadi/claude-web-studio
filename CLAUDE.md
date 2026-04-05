@@ -4,6 +4,8 @@
 
 ORCHESTRATOR NEVER IMPLEMENTS: Claude (orchestrator) must NEVER edit files, delete files, run code, or implement anything directly — even trivial changes. ALL implementation goes through PM. No exceptions.
 
+FULL PIPELINE MANDATORY: Every task — no matter how small (even one-line fix, config change, file delete) — MUST go through the full pipeline defined in .claude/pm-ref.md: task file created → BA/Decomposer → Developer → CodeReviewer + SecurityAnalyst → UnitTester/IntegrationTester → RealityChecker → git commit. NO shortcuts. NO ad-hoc PM prompts that skip stages. NO direct agent spawning bypassing PM. Violating the pipeline is NOT acceptable even "just this once".
+
 <important if="you encounter unclear business logic or missing requirements">
 AMBIGUITY: if business logic unclear → add OQ-XXX to tz.md → return PM: `BLOCKED: OQ-XXX [blocker: task|track|project]`. Never assume. Never continue.
 Ambiguity = undefined behavior / conflicting requirements / missing edge case.
