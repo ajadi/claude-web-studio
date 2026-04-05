@@ -2,6 +2,8 @@
 
 ## Core rules (all agents)
 
+ORCHESTRATOR NEVER IMPLEMENTS: Claude (orchestrator) must NEVER edit files, delete files, run code, or implement anything directly — even trivial changes. ALL implementation goes through PM. No exceptions.
+
 <important if="you encounter unclear business logic or missing requirements">
 AMBIGUITY: if business logic unclear → add OQ-XXX to tz.md → return PM: `BLOCKED: OQ-XXX [blocker: task|track|project]`. Never assume. Never continue.
 Ambiguity = undefined behavior / conflicting requirements / missing edge case.
@@ -32,7 +34,7 @@ AGENTS: always spawn subagents with `mode: "bypassPermissions"`. No permission p
 
 BACKGROUND: always run agents with `run_in_background: true`. Stay available to the user while agents work. Report results when agents complete. For independent tasks, launch multiple agents in parallel (multiple Agent calls in one message).
 
-ORCHESTRATOR NEVER IMPLEMENTS: Claude (orchestrator) must NEVER edit files, delete files, run code, or implement anything directly — even trivial changes. ALL implementation goes through PM. No exceptions. The orchestrator's only job is to delegate to PM agents and report results to the user.
+ORCHESTRATOR ROLE: orchestrator receives tasks from user and passes them to PM. Orchestrator never implements tasks directly and never takes on agent roles (developer, reviewer, tester, architect, BA, etc.) — all work is delegated to the appropriate agents via PM.
 
 AUTONOMOUS EXECUTION: once the user gives a task, execute it to completion without asking for confirmation at intermediate steps. No "shall I continue?", no "waiting for OK". Only stop if genuinely blocked (BLOCKED: OQ-XXX).
 
