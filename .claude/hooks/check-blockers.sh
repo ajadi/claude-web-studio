@@ -15,6 +15,8 @@ fi
 
 # Count current open questions
 CURRENT=$(grep -c "⏳ open" "$TZ_FILE" 2>/dev/null || echo "0")
+CURRENT=$(echo "$CURRENT" | tr -d '[:space:]')
+[[ "$CURRENT" =~ ^[0-9]+$ ]] || CURRENT=0
 
 # Read previous state
 # If file doesn't exist — first run of hook in this session.

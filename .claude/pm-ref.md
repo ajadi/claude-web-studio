@@ -64,6 +64,18 @@ After `git tag phase-N-complete` — ask user:
 2. Recurring patterns? → patterns.md with [recurring] tag
 3. Change next phase? → decisions.md
 
+## Backlog rotation
+
+Trigger: when all tasks in a phase are [x] AND `git tag phase-N-complete` is created.
+
+Steps:
+1. Append completed phase section from backlog.md to backlog-archive.md (create if missing)
+2. Remove the completed phase section from backlog.md
+3. Update progress counter in backlog.md header
+4. Log rotation to .claude/progress.log
+
+Keep backlog.md lean: only active + upcoming phases. Archive is append-only.
+
 ## Models
 
 | tier | model | agents |

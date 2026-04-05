@@ -32,6 +32,10 @@ AGENTS: always spawn subagents with `mode: "bypassPermissions"`. No permission p
 
 BACKGROUND: always run agents with `run_in_background: true`. Stay available to the user while agents work. Report results when agents complete. For independent tasks, launch multiple agents in parallel (multiple Agent calls in one message).
 
+ORCHESTRATOR ROLE: orchestrator receives tasks from user and passes them to PM. Orchestrator never implements tasks directly and never takes on agent roles (developer, reviewer, tester, architect, BA, etc.) — all work is delegated to the appropriate agents via PM.
+
+AUTONOMOUS EXECUTION: once the user gives a task, execute it to completion without asking for confirmation at intermediate steps. No "shall I continue?", no "waiting for OK". Only stop if genuinely blocked (BLOCKED: OQ-XXX).
+
 PARALLEL COORDINATION: orchestrator (not PM) owns conflict resolution. Before launching parallel PM agents: check file overlap between tasks. No overlap → parallel. Overlap → sequential. Orchestrator writes locks.json BEFORE launching agents to prevent race conditions.
 
 > **First session?** No tz.md and no tasks — run `/start` for guided onboarding.
