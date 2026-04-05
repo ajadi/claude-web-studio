@@ -40,4 +40,12 @@ AUTONOMOUS EXECUTION: once the user gives a task, execute it to completion witho
 
 PARALLEL COORDINATION: orchestrator (not PM) owns conflict resolution. Before launching parallel PM agents: check file overlap between tasks. No overlap → parallel. Overlap → sequential. Orchestrator writes locks.json BEFORE launching agents to prevent race conditions.
 
+AGENT FAILURE: if an agent errors or returns unexpected result → retry once with the same prompt. If fails again → report to user with error details and stop. Never retry more than once autonomously.
+
+REQUIREMENT CHANGES MID-TASK: if user changes requirements while a task is in progress → stop the running agent (SendMessage STOP), update the task file with new requirements, relaunch from the beginning. Do not try to patch a half-done task.
+
+RULE CONFLICT — AMBIGUITY wins over AUTONOMOUS EXECUTION: if an agent encounters genuine ambiguity, it must stop and report (BLOCKED: OQ-XXX) even if the task was marked urgent. Never guess business logic.
+
+DEFINITION OF DONE: a task is complete only when: (1) code committed to git, (2) tests pass (if new logic was added), (3) result reported to user. Agent stopping mid-way without commit = not done.
+
 > **First session?** No tz.md and no tasks — run `/start` for guided onboarding.
