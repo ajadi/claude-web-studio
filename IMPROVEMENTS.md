@@ -1,7 +1,7 @@
-# Improvements from Krol's Course — v0.9 Status
+# Improvements from Krol's Course — v1.0 Status
 
 Конкретные кейсы из курса `alexeykrol/coursevibecode`, применённые к Forge.
-Все 14 улучшений реализованы в v0.9.
+Все 14 улучшений реализованы в v1.0.
 
 ---
 
@@ -252,7 +252,7 @@ recommendation: [specific fix, not generic]
 
 ---
 
-## Статус внедрения (v0.9)
+## Статус внедрения (v1.0)
 
 | # | Улучшение | Статус | Где реализовано |
 |---|-----------|--------|-----------------|
